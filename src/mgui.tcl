@@ -11,7 +11,7 @@ lappend auto_path $env(MGUI_SRC) $env(PWD)
 
 # initialize
 mguiInitGlobals
-# mguiSetXopts
+mguiSetXopts
   
 # create widget(s)
 mguiBuildFrame $mguiGlobals(SYSLEV)
