@@ -1,0 +1,9 @@
+#RA	Dec
+75.0	0.0
+-75.0	75.0
+-75.0	-75.0
+75.0	-75.0
+# +
+# this moves back to the field center (and takes data) but can be omitted
+# -
+0.0	75.0
