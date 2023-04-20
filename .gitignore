@@ -1,3 +1,4 @@
 bin/mgui
+cfg/mgui.vars
 src/tclIndex
 tsv/*
