@@ -10,6 +10,7 @@ The output(s) are tab-separated-value (.tsv) files suitable for ingestion into t
  ```bash
   % cd <path>/mgui
   % source etc/mgui.sh `pwd`
+  % mkdir $MGUI_BIN
   % cd $MGUI_HOME
   % make everything
  ```
