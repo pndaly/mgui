@@ -1,9 +1,11 @@
 proc checkRA { RA } {
- return [regexp "^(0\[0-9]|1\[0-9]|2\[0-3]):\[0-5]\[0-9]:\[0-5]\[0-9](\.\[0-9])$" ${RA}]
+ # return [regexp "^(\[0]?\[0-9]|1\[0-9]|2\[0-3]):\[0-5]\[0-9]:\[0-5]\[0-9](\.\[0-9]*)$" ${RA}]
+ return [regexp "^(\[0]?\[0-9]|1\[0-9]|2\[0-3]):\[0-5]\[0-9]:\[0-5]\[0-9](\.\[0-9]*)$" ${RA}]
 }
 
 proc checkDec { Dec } {
- return [regexp "^(\[+-]?\[0-8]\[0-9]):\[0-5]\[0-9]:\[0-5]\[0-9](\.\[0-9])$" ${Dec}]
+ # return [regexp "^(\[+-]?\[0-8]\[0-9]):\[0-5]\[0-9]:\[0-5]\[0-9](\.\[0-9]*)$" ${Dec}]
+ return [regexp "^(\[+-]?)(\[0]?\[0-9]|\[1-8]\[0-9]):\[0-5]\[0-9]:\[0-5]\[0-9](\.\[0-9]*)$" ${Dec}]
 }
 
 proc checkFloat { f } {
@@ -61,6 +63,60 @@ proc Dec_from_asec { asec } {
  set R [expr ${Vm} - ${M}]
  set S [expr ${R} * 60.0]
  return [format "%1s%02s:%02s:%04.1f" ${sign} ${D} ${M} ${S}]
+}
+
+proc testCheckRA { r } {
+ if { [checkRA ${r}] == 1 } {
+  puts "RA ${r} is OK"
+ } else {
+  puts "ERROR: RA ${r} is NOT OK"
+ }
+}
+
+proc testCheckDec { r } {
+ if { [checkDec ${r}] == 1 } {
+  puts "Dec ${r} is OK"
+ } else {
+  puts "ERROR: Dec ${r} is NOT OK"
+ }
+}
+
+proc testCheckRADec { } {
+ # RA
+ testCheckRA 12:34:56.7
+ testCheckRA 12:34:56.70
+ testCheckRA 12:34:56.702
+ testCheckRA 2:34:56.7
+ testCheckRA 2:34:56.70
+ testCheckRA 2:34:56.702
+ testCheckRA 02:34:56.7
+ testCheckRA 02:34:56.70
+ testCheckRA 02:34:56.702
+ testCheckRA 22:34:56.7
+ testCheckRA 22:34:56.70
+ testCheckRA 22:34:56.702
+ testCheckRA 24:00:00.000
+ # Dec
+ testCheckDec 12:34:56.7
+ testCheckDec 12:34:56.70
+ testCheckDec 12:34:56.702
+ testCheckDec 2:34:56.7
+ testCheckDec 2:34:56.70
+ testCheckDec 2:34:56.702
+ testCheckDec 02:34:56.7
+ testCheckDec 02:34:56.70
+ testCheckDec 02:34:56.702
+ testCheckDec -12:34:56.7
+ testCheckDec -12:34:56.70
+ testCheckDec -12:34:56.702
+ testCheckDec -2:34:56.7
+ testCheckDec -2:34:56.70
+ testCheckDec -2:34:56.702
+ testCheckDec -02:34:56.7
+ testCheckDec -02:34:56.70
+ testCheckDec -02:34:56.702
+ testCheckDec 90:00:00.000
+ testCheckDec -90:00:00.000
 }
 
 proc testRADec { } {
