@@ -115,8 +115,8 @@ proc mguiTsvWriteDither { F O } {
     append msg $mguiVariables(DTS_E_U_VAL) "\t"
     append msg $mguiGlobals(TELESCOPE) "\t"
     append msg $mguiGlobals(INSTRUMENT) "\t"
-    append msg [format "%s_%s_%s" $mguiVariables(DTS_E_O_VAL) $mguiVariables(DTS_R_B${i}_VAL) \
-                $mguiVariables(DTS_T_F${i}_VAL)] "_p${j}\t"
+    append msg [format "%s-%s-%s" $mguiVariables(DTS_E_O_VAL) $mguiVariables(DTS_R_B${i}_VAL) \
+                $mguiVariables(DTS_T_F${i}_VAL)] "-p${j}\t"
     append msg ${aRA} "\t"
     append msg ${aDec} "\t"
     append msg $mguiVariables(DTS_T_F${i}_VAL) "\t"
@@ -156,7 +156,7 @@ proc mguiTsvWriteNoDither { F } {
    append msg $mguiVariables(DTS_E_U_VAL) "\t"
    append msg $mguiGlobals(TELESCOPE) "\t"
    append msg $mguiGlobals(INSTRUMENT) "\t"
-   append msg [format "%s_%s_%s" $mguiVariables(DTS_E_O_VAL) $mguiVariables(DTS_R_B${i}_VAL) \
+   append msg [format "%s-%s-%s" $mguiVariables(DTS_E_O_VAL) $mguiVariables(DTS_R_B${i}_VAL) \
                $mguiVariables(DTS_T_F${i}_VAL)] "\t"
    append msg $mguiVariables(DTS_E_R_VAL) "\t"
    append msg $mguiVariables(DTS_E_D_VAL) "\t"
